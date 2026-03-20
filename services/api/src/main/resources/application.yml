@@ -1,0 +1,15 @@
+server:
+  port: ${API_PORT:8080}
+
+spring:
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:postgres}:${DB_PORT:5432}/${DB_NAME:railcast}
+    username: ${DB_USER:railcast}
+    password: ${DB_PASSWORD:railcast}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: false

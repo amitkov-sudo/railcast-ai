@@ -1,0 +1,13 @@
+experiment:
+  name: delay_prediction_baseline
+  random_seed: 42
+
+data:
+  train_path: data/processed/train.parquet
+  validation_path: data/processed/validation.parquet
+
+model:
+  type: random_forest_regressor
+  params:
+    n_estimators: 200
+    max_depth: 12

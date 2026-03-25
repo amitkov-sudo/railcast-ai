@@ -1,12 +1,18 @@
-from pathlib import Path
+# pipelines/ingestion/bart_tripupdates_collector.py
+import requests
+from parse_gtfs_rt import parse_feed
 
+URL = "http://api.bart.gov/gtfsrt/tripupdate.aspx"
 
-def run(output_dir: str = "data/raw") -> Path:
-    target = Path(output_dir) / "bart_tripupdates_placeholder.txt"
-    target.parent.mkdir(parents=True, exist_ok=True)
-    target.write_text("Replace with BART trip updates collection logic.\n", encoding="utf-8")
-    return target
+def main():
+    response = requests.get(URL, timeout=30)
+    response.raise_for_status()
 
+    feed = parse_feed(response.content)
+
+    for entity in feed.entity:
+        if entity.HasField("trip_update"):
+            print(entity.trip_update)
 
 if __name__ == "__main__":
-    print(run())
+    main()

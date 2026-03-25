@@ -34,9 +34,9 @@ services:
     image: postgres:15
     container_name: railcast-postgres
     environment:
-      POSTGRES_DB: railcast
-      POSTGRES_USER: railcast
-      POSTGRES_PASSWORD: railcast
+      POSTGRES_DB: ${DB_NAME:-railcast}
+      POSTGRES_USER: ${DB_USER:-railcast}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-railcast}
     ports:
       - "5432:5432"
     volumes:
